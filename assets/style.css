@@ -1,0 +1,9 @@
+body {
+    font-family: Silkscreen;
+    color: #dde2f0;
+}
+.backdrop {
+    width: 70vmin;
+    height: 75vmin;
+    background: #122457;
+}
