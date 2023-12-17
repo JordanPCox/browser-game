@@ -44,6 +44,11 @@ function handleGameOver() {
     clearInterval(gameInterval)
 }
 
+// Function to be called when "Play Again" button is clicked. This just reloads the page.
+function playAgain() {
+    window.location.reload();
+}
+
 // Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
 function changeDirection(e) {
     switch (e.key) {
