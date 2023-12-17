@@ -1,5 +1,10 @@
 // Source for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
 const huntingGround = document.querySelector(".game-board")
+const scoreTracker = document.querySelector(".game-info")
+const highScoreTracker = document.querySelector(".high-score")
+
+let highScore = localStorage.getItem("high-score") || 0;
+highScoreTracker.innerText = `High Score: ${highScore}`
 
 let gameOver = false;
 // Creating our targets
@@ -13,6 +18,8 @@ let player1Body = []
 // Initializing movement
 let speedX = 0
 let speedY = 0
+//Record score
+let score =0;
 
 // Using math.random to change target location, and +1 to make sure that the random number does not land on 0 or 34. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function targetRandomizer() {
@@ -92,10 +99,17 @@ function gameStart() {
     // Add target
     let htmlTemplate = `<div class="target" style="grid-area: ${targetY} / ${targetX}"></div>`;
 
-    // Check to see if player1 made contact with target, then adding onto player1 body if true.
+    // Check to see if player1 made contact with target.
     if(player1X === targetX && player1Y === targetY) {
         targetRandomizer();
-        player1Body.push([targetX, targetY])
+        player1Body.push([targetX, targetY]) //Pushes target to player1Body array after target is eaten.
+        score++; //Increments score by 1
+
+        highScore = score >= highScore ? score : highScore; //Storing score/high score
+        localStorage.setItem("high-score", highScore)
+        scoreTracker.innerText = `Score: ${score}`
+        highScoreTracker.innerText = `High Score: ${highScore}`
+        
     }
 
     // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one. It then updates each segment to have the position of the segment before it.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
