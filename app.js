@@ -44,7 +44,7 @@ function handleGameOver() {
     clearInterval(gameInterval)
 }
 
-// Function to be called when "Play Again" button is clicked. This just reloads the page.
+
 function playAgain() {
     window.location.reload();
 }
@@ -54,24 +54,34 @@ function changeDirection(e) {
     switch (e.key) {
         case "w":
         case "W":
+            if (speedY !== 1){
             speedX = 0
             speedY = -1
+            }
             break
 
         case "s":
         case "S":
+            if (speedY !== -1){
             speedX = 0
             speedY = 1
+            }
             break
+
         case "d":
         case "D":
+            if (speedX !== -1) {
             speedX = 1
             speedY = 0
+            }
             break
+
         case "a":
         case "A":
+            if (speedX !== 1){
             speedX = -1
             speedY = 0
+            }
             break
     }
     gameStart();
@@ -88,7 +98,7 @@ function gameStart() {
         player1Body.push([targetX, targetY])
     }
 
-    // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one. It then updates each segment to have the position of the segment before it.  Solution found by CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
+    // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one. It then updates each segment to have the position of the segment before it.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
     for (let i = player1Body.length -1; i > 0; i--){
         player1Body[i] = player1Body[i - 1]
     }
@@ -101,12 +111,16 @@ function gameStart() {
 
     //Add game over state if player hits wall
     if(player1X <= 0 || player1X > 35 || player1Y <= 0 || player1Y >35) {
-        gameOver = true;
+        gameOver = true
     }
 
     // Add a div for each part of the player's body when a target is reached.
     for (let i=0; i < player1Body.length; i++) {
-        htmlTemplate += `<div class="player1" style="grid-area: ${player1Body[i][1]} / ${player1Body[i][0]}"></div>`;   
+        htmlTemplate += `<div class="player1" style="grid-area: ${player1Body[i][1]} / ${player1Body[i][0]}"></div>`;
+        //Add game over state if player hits own body.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
+    if(i !== 0 && player1Body[0][1] === player1Body[i][1] && player1Body[0][0] === player1Body[i][0]){
+        gameOver = true
+        }   
     }
     huntingGround.innerHTML = htmlTemplate;
 }
