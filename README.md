@@ -6,3 +6,4 @@
 # SOURCES
 # - CSS Grid and "fr" unit: DigitalOcean. (n.d.). CSS Grid Layout: The fr Unit. DigitalOcean. https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit
 # - Snake game inspiration: Andhouse. (n.d.). CSS Grid Layout Example. CodePen. https://codepen.io/andhouse/pen/wzjKjw
+# - Basic layout and functionality (no publication data): https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/

@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
     background-color: #677DB7;;
 }
-.backdrop {
+.header-bar {
     width: 80vmin;
     height: 85vmin;
     display: flex;
@@ -29,4 +29,10 @@ body {
     display: grid;
     grid-template: repeat(35, 1fr) / repeat(35, 1fr);
     /* Source for grid and "fr" unit: https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit */
+}
+.game-board .target {
+    background-color: #DF2935;
+}
+.game-board .player1 {
+    background-color: #657ED4;
 }
