@@ -1,9 +1,32 @@
 body {
-    font-family: Silkscreen;
-    color: #dde2f0;
+    outline: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #677DB7;;
 }
 .backdrop {
-    width: 70vmin;
-    height: 75vmin;
-    background: #122457;
+    width: 80vmin;
+    height: 85vmin;
+    display: flex;
+    flex-direction: column;
+    background: #262730;
+    border-radius: 10px;
+}
+.game-info {
+    font-family: Silkscreen;
+    color: #dde2f0;
+    font-size: 1em;
+    padding: .75em;
+    display: flex;
+    justify-content: space-between;
+}
+.game-board {
+    width: 100%;
+    height: 100%;
+    background: #77BA99;
+    display: grid;
+    grid-template: repeat(35, 1fr) / repeat(35, 1fr);
+    /* Source for grid and "fr" unit: https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit */
 }
