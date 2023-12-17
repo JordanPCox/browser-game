@@ -1,6 +1,7 @@
 // Source for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
 const huntingGround = document.querySelector(".game-board")
 
+let gameOver = false;
 // Creating our targets
 let targetX
 let targetY
@@ -17,6 +18,30 @@ let speedY = 0
 function targetRandomizer() {
     targetX = Math.floor(Math.random() * 35) + 1;
     targetY = Math.floor(Math.random() * 35) + 1;
+}
+
+// Adding a modal for a game over screen
+function openModal() {
+    document.getElementById('gameOverModal').style.display = 'block'
+}
+// Adding functionality to close the modal by clicking outside of it
+function closeModal() {
+    let modal = document.getElementById('gameOverModal')
+    if (modal) {
+        modal.style.display = 'none'
+    }
+}
+
+window.onclick = function(event) {
+    let modal = document.getElementById('gameOverModal')
+    if (event.target === modal) {
+        modal.style.display = 'none'
+    }
+}
+
+function handleGameOver() {
+    openModal();
+    clearInterval(gameInterval)
 }
 
 // Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
@@ -48,6 +73,7 @@ function changeDirection(e) {
 }
 
 function gameStart() {
+    if(gameOver) return handleGameOver();
     // Add target
     let htmlTemplate = `<div class="target" style="grid-area: ${targetY} / ${targetX}"></div>`;
 
@@ -64,8 +90,14 @@ function gameStart() {
     // Setting the first element of player1's body to the current player1 position
     player1Body[0] = [player1X, player1Y]
 
+    //Updates the polayer's "head" position based on current speed.
     player1X += speedX
     player1Y += speedY
+
+    //Add game over state if player hits wall
+    if(player1X <= 0 || player1X > 35 || player1Y <= 0 || player1Y >35) {
+        gameOver = true;
+    }
 
     // Add a div for each part of the player's body when a target is reached.
     for (let i=0; i < player1Body.length; i++) {
@@ -76,7 +108,7 @@ function gameStart() {
 
 targetRandomizer();
 // Using setInterval so player moves automatically
-setInterval(gameStart, 165);
+gameInterval = setInterval(gameStart, 165);
 
 //Adding event listeners for keyboard movement.
 document.addEventListener("keydown", changeDirection)
