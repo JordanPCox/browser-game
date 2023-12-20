@@ -1,9 +1,10 @@
-// Source for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
-const huntingGround = document.querySelector(".game-board")
+// Sources for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/ & https://codepen.io/andhouse/pen/wzjKjw
+const stage = document.querySelector(".game-board")
 const scoreTracker = document.querySelector(".game-info")
 const highScoreTracker = document.querySelector(".high-score")
+const playerCat = document.getElementById("playerCat")
 
-let highScore = localStorage.getItem("high-score") || 0;
+let highScore = parseInt(localStorage.getItem("high-score")) || 0;
 highScoreTracker.innerText = `High Score: ${highScore}`
 
 let gameOver = false;
@@ -27,10 +28,21 @@ function targetRandomizer() {
     targetY = Math.floor(Math.random() * 35) + 1;
 }
 
+function handleGameOver() {
+    openModal();
+    clearInterval(gameInterval)
+}
+
+
+function playAgain() {
+    window.location.reload();
+}
+
 // Adding a modal for a game over screen
 function openModal() {
     document.getElementById('gameOverModal').style.display = 'block'
 }
+
 // Adding functionality to close the modal by clicking outside of it
 function closeModal() {
     let modal = document.getElementById('gameOverModal')
@@ -46,98 +58,140 @@ window.onclick = function(event) {
     }
 }
 
-function handleGameOver() {
-    openModal();
-    clearInterval(gameInterval)
-}
-
-
-function playAgain() {
-    window.location.reload();
-}
-
 // Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
 function changeDirection(e) {
+    let direction;
+
     switch (e.key) {
         case "w":
         case "W":
             if (speedY !== 1){
-            speedX = 0
-            speedY = -1
+                speedX = 0;
+                speedY = -1;
+                direction = "up";
             }
-            break
+                break;
 
         case "s":
         case "S":
             if (speedY !== -1){
-            speedX = 0
-            speedY = 1
+                speedX = 0;
+                speedY = 1;
+                direction = "down";
             }
-            break
+                break;
 
         case "d":
         case "D":
             if (speedX !== -1) {
-            speedX = 1
-            speedY = 0
+                speedX = 1;
+                speedY = 0;
+                direction = "right";
             }
-            break
+                break;
 
         case "a":
         case "A":
             if (speedX !== 1){
-            speedX = -1
-            speedY = 0
+                speedX = -1;
+                speedY = 0;
+                direction = "left";
             }
-            break
+                break;
     }
-    gameStart();
+
+    updatePlayerCatAppearance(direction);
 }
 
+function updatePlayerCatAppearance(direction) {
+    const upGif = "./assets/Images/cat-walk-up.gif"
+    const downGif = "./assets/Images/cat-walk-down.gif"
+    const leftGif = "./assets/Images/cat-walk-left.gif"
+    const rightGif = "./assets/Images/cat-walk-right.gif"
+    const stationary = "./assets/Images/cat-sleeping.png"
+
+    switch (direction) {
+        case "up":
+            playerCat.style.backgroundImage = `url('${upGif}')`;
+            break;
+        case "down":
+            playerCat.style.backgroundImage = `url('${downGif}')`;
+            break;
+        case "left":
+            playerCat.style.backgroundImage = `url('${leftGif}')`;
+            break;
+        case "right":
+            playerCat.style.backgroundImage = `url('${rightGif}')`;
+            break;
+        // default:
+        //     playerCat.style.backgroundImage = `url('${stationary}')`;
+    }
+    console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
+}
+
+
 function gameStart() {
-    if(gameOver) return handleGameOver();
+    if (gameOver) return handleGameOver();
+
+
     // Add target
     let htmlTemplate = `<div class="target" style="grid-area: ${targetY} / ${targetX}"></div>`;
 
-    // Check to see if player1 made contact with target.
-    if(player1X === targetX && player1Y === targetY) {
-        targetRandomizer();
-        player1Body.push([targetX, targetY]) //Pushes target to player1Body array after target is eaten.
-        score++; //Increments score by 1
-
-        highScore = score >= highScore ? score : highScore; //Storing score/high score
-        localStorage.setItem("high-score", highScore)
-        scoreTracker.innerText = `Score: ${score}`
-        highScoreTracker.innerText = `High Score: ${highScore}`
-        
+    // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one.
+    // It then updates each segment to have the position of the segment before it.
+    // Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
+    for (let i = player1Body.length - 1; i > 0; i--) {
+        player1Body[i] = player1Body[i - 1];
     }
 
-    // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one. It then updates each segment to have the position of the segment before it.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
-    for (let i = player1Body.length -1; i > 0; i--){
-        player1Body[i] = player1Body[i - 1]
-    }
+
     // Setting the first element of player1's body to the current player1 position
-    player1Body[0] = [player1X, player1Y]
+    player1Body[0] = [player1X, player1Y];
 
-    //Updates the polayer's "head" position based on current speed.
-    player1X += speedX
-    player1Y += speedY
 
-    //Add game over state if player hits wall
-    if(player1X <= 0 || player1X > 35 || player1Y <= 0 || player1Y >35) {
-        gameOver = true
-    }
+
+    // Updates the player's "head" position based on the current speed.
+    player1X += speedX;
+    player1Y += speedY;
 
     // Add a div for each part of the player's body when a target is reached.
-    for (let i=0; i < player1Body.length; i++) {
+    for (let i = 0; i < player1Body.length; i++) {
         htmlTemplate += `<div class="player1" style="grid-area: ${player1Body[i][1]} / ${player1Body[i][0]}"></div>`;
-        //Add game over state if player hits own body.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
-    if(i !== 0 && player1Body[0][1] === player1Body[i][1] && player1Body[0][0] === player1Body[i][0]){
-        gameOver = true
-        }   
+
+
+        // Add game over state if player hits own body.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
+        if (i !== 0 && player1Body[0][1] === player1Body[i][1] && player1Body[0][0] === player1Body[i][0]) {
+            gameOver = true;
+        }
     }
-    huntingGround.innerHTML = htmlTemplate;
+
+    // Updates the player's appearance after updating the position
+    updatePlayerCatAppearance();
+
+
+    // Check to see if player1 made contact with target, then randomize next target location if true.
+    if (player1X === targetX && player1Y === targetY) {
+        targetRandomizer();
+        player1Body.push([targetX, targetY]); // Pushes target to player1Body array after the target is eaten.
+        score++; // Increments score by 1
+
+        highScore = score >= highScore ? score : highScore; // Storing score/high score
+        localStorage.setItem("high-score", highScore);
+        scoreTracker.innerText = `Score: ${score}`;
+        highScoreTracker.innerText = `High Score: ${highScore}`;
+    }
+
+    // Add game over state if player hits wall
+    if (player1X <= 0 || player1X > 35 || player1Y <= 0 || player1Y > 35) {
+        gameOver = true;
+    }
+
+    // Display the updated HTML template
+    stage.innerHTML = htmlTemplate;
 }
+
+
+gameStart();
 
 targetRandomizer();
 // Using setInterval so player moves automatically
