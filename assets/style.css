@@ -12,7 +12,8 @@ body {
 .border-1 {
     display: flex;
     flex-direction: column;
-    background-color: #2E2836;
+    background-image: linear-gradient(to right, #473e53, #2E2836);
+    /* background-color: #2E2836; */
     border: 6px solid silver;
     border-radius: 18px;
     height: 95vh;
