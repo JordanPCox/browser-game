@@ -123,10 +123,7 @@ function updateSnakeGif(direction) {
          case "right":
              snakeGif.style.backgroundImage = `url('${rightGif}')`;
              break;
-         // default:
-         //     snakeGif.style.backgroundImage = `url('${stationary}')`;
      }
-     console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
  }
 
 
@@ -172,7 +169,7 @@ function gameStart() {
     }
 
     // Updates the player's appearance after updating the position
-    // updatePlayerCatAppearance();
+    // updateSnakeGif();
 
 
     // Check to see if player1 made contact with target, then randomize next target location if true.
