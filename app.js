@@ -1,8 +1,9 @@
 // Sources for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/ & https://codepen.io/andhouse/pen/wzjKjw
 const stage = document.querySelector(".game-board")
-const scoreTracker = document.querySelector(".game-info")
+const scoreTracker = document.querySelector(".game-header")
 const highScoreTracker = document.querySelector(".high-score")
 const playerCat = document.getElementById("playerCat")
+const controls = document.querySelectorAll(".controls i")
 
 let highScore = parseInt(localStorage.getItem("high-score")) || 0;
 highScoreTracker.innerText = `High Score: ${highScore}`
@@ -24,12 +25,12 @@ let score =0;
 
 // Using math.random to change target location, and +1 to make sure that the random number does not land on 0 or 34. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function targetRandomizer() {
-    targetX = Math.floor(Math.random() * 35) + 1;
-    targetY = Math.floor(Math.random() * 35) + 1;
+    targetX = Math.floor(Math.random() * 30) + 1
+    targetY = Math.floor(Math.random() * 30) + 1
 }
 
 function handleGameOver() {
-    openModal();
+    openModal()
     clearInterval(gameInterval)
 }
 
@@ -60,7 +61,7 @@ window.onclick = function(event) {
 
 // Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
 function changeDirection(e) {
-    let direction;
+    let direction
 
     switch (e.key) {
         case "w":
@@ -100,34 +101,40 @@ function changeDirection(e) {
                 break;
     }
 
-    updatePlayerCatAppearance(direction);
+    // updatePlayerCatAppearance(direction);
 }
 
-function updatePlayerCatAppearance(direction) {
-    const upGif = "./assets/Images/cat-walk-up.gif"
-    const downGif = "./assets/Images/cat-walk-down.gif"
-    const leftGif = "./assets/Images/cat-walk-left.gif"
-    const rightGif = "./assets/Images/cat-walk-right.gif"
-    const stationary = "./assets/Images/cat-sleeping.png"
+// function updatePlayerCatAppearance(direction) {
+//     const upGif = "./assets/Images/cat-walk-up.gif"
+//     const downGif = "./assets/Images/cat-walk-down.gif"
+//     const leftGif = "./assets/Images/cat-walk-left.gif"
+//     const rightGif = "./assets/Images/cat-walk-right.gif"
+//     const stationary = "./assets/Images/cat-sleeping.png"
 
-    switch (direction) {
-        case "up":
-            playerCat.style.backgroundImage = `url('${upGif}')`;
-            break;
-        case "down":
-            playerCat.style.backgroundImage = `url('${downGif}')`;
-            break;
-        case "left":
-            playerCat.style.backgroundImage = `url('${leftGif}')`;
-            break;
-        case "right":
-            playerCat.style.backgroundImage = `url('${rightGif}')`;
-            break;
-        // default:
-        //     playerCat.style.backgroundImage = `url('${stationary}')`;
-    }
-    console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
-}
+//     switch (direction) {
+//         case "up":
+//             playerCat.style.backgroundImage = `url('${upGif}')`;
+//             break;
+//         case "down":
+//             playerCat.style.backgroundImage = `url('${downGif}')`;
+//             break;
+//         case "left":
+//             playerCat.style.backgroundImage = `url('${leftGif}')`;
+//             break;
+//         case "right":
+//             playerCat.style.backgroundImage = `url('${rightGif}')`;
+//             break;
+//         // default:
+//         //     playerCat.style.backgroundImage = `url('${stationary}')`;
+//     }
+//     console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
+// }
+
+
+//Add functionality for clickable controls. Calls changeDirection on each key click and passes key dataset value as an object.
+controls.forEach(key => {
+    key.addEventListener("click", () => changeDirection({ key: key.dataset.key }))
+})
 
 
 function gameStart() {
@@ -166,34 +173,36 @@ function gameStart() {
     }
 
     // Updates the player's appearance after updating the position
-    updatePlayerCatAppearance();
+    // updatePlayerCatAppearance();
 
 
     // Check to see if player1 made contact with target, then randomize next target location if true.
     if (player1X === targetX && player1Y === targetY) {
         targetRandomizer();
-        player1Body.push([targetX, targetY]); // Pushes target to player1Body array after the target is eaten.
+        player1Body.push([targetX, targetY]) // Pushes target to player1Body array after the target is eaten.
         score++; // Increments score by 1
 
-        highScore = score >= highScore ? score : highScore; // Storing score/high score
-        localStorage.setItem("high-score", highScore);
-        scoreTracker.innerText = `Score: ${score}`;
-        highScoreTracker.innerText = `High Score: ${highScore}`;
+        highScore = score >= highScore ? score : highScore // Storing score/high score
+        localStorage.setItem("high-score", highScore)
+        scoreTracker.innerText = `Score: ${score}`
+        highScoreTracker.innerText = `High Score: ${highScore}`
     }
 
     // Add game over state if player hits wall
-    if (player1X <= 0 || player1X > 35 || player1Y <= 0 || player1Y > 35) {
+    if (player1X <= 0 || player1X > 30 || player1Y <= 0 || player1Y > 30) {
         gameOver = true;
     }
 
     // Display the updated HTML template
-    stage.innerHTML = htmlTemplate;
+    stage.innerHTML = htmlTemplate
 }
 
 
 gameStart();
 
 targetRandomizer();
+
+
 // Using setInterval so player moves automatically
 gameInterval = setInterval(gameStart, 165);
 

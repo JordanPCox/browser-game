@@ -8,10 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Nanum+Myeongjo:wght@400;700&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="./app.js" defer></script>
 </head>
 <body>
-    <div id="playerCat" class="catGang"></div>
+    <!-- <div id="playerCat" class="catGang"></div> -->
     <!-- <div>
         <button id="classicButton">Classssic</button>
         <button id="Multiplayer">Multiplayer</button>
@@ -24,13 +25,21 @@
             <button onclick="playAgain()">Play Again</button>
         </div>
     </div>
-    <div class="header-bar">
-        <div class="game-info">
-            <div class="current-score">Score: 0</div>
-            <div class="high-score">High Score: 100</div>
+    <div class="border-1"><p id="gnocchia">Gnocchia</span>
+        <div class="border-2">
+            <div class="screen">
+                <div class="game-header">
+                    <div class="current-score">Score: 0</div>
+                    <div class="high-score">High Score: 100</div>
+                </div>
+                <div class="game-board"></div>
+            </div>
         </div>
-        <div class="game-board">
-            
+        <div class="controls">
+            <i data-key="A" class="fas fa-angle-left"></i>
+            <i data-key="W" class="fas fa-angle-up"></i>
+            <i data-key="D" class="fas fa-angle-right"></i>
+            <i data-key="S" class="fas fa-angle-down"></i>
         </div>
     </div>
 </body>
