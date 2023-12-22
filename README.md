@@ -8,4 +8,4 @@
 # - Snake game build inspiration: Andhouse. (n.d.). CSS Grid Layout Example. CodePen. https://codepen.io/andhouse/pen/wzjKjw
 # - Basic layout and functionality (no publication data): https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
 # - Used browser tool to convert cat sprite sheet to gif. https://onlinegiftools.com/convert-sprite-sheet-to-gif
-# - Cat gif art credit: "[LPC] Cats and Dogs" Artist: bluecarrot16 License: CC-BY 3.0 / GPL 3.0 / GPL 2.0 / OGA-BY 3.0 Please link to opengameart: http://opengameart.org/content/lpc-cats-and-dogs
+# - Snake art gif credit: "Created by yolkati & Sebastian Riedel (Baŝto). Licensing: Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0"

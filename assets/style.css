@@ -109,21 +109,56 @@ body {
     cursor: pointer;
 }
 
+.controls {
+    padding: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .controls i {
-    padding: 8px;
+    padding: 12px;
+    margin: 12px;
     width: 2em;
     color: #dde2f0;
     border: 1px solid #dde2f0;
     text-align: center;
     font-size: 1.5em;
     cursor: pointer;
-    margin-top: 1em;
 }
 
-/* #playerCat {
+.top-row {
+    width: 100%;
+    text-align: center;
+    height: 30%;
+    padding-top: 0;
+}
+
+.mid-row {
+    display: flex;
+    text-align: center;
+    height: 35%;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.mid-row i {
+    justify-content: space-around;
+}
+
+.bottom-row {
+    width: 100%;
+    text-align: center;
+    height: 30%;
+}
+
+#snakeGif {
+    position: absolute;
+    bottom: 3.3em;
+    left: 29em;
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;
     height: 100px;
-    z-index: 1;
-} */
+    justify-content: center;
+}

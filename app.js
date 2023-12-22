@@ -2,7 +2,7 @@
 const stage = document.querySelector(".game-board")
 const scoreTracker = document.querySelector(".game-header")
 const highScoreTracker = document.querySelector(".high-score")
-const playerCat = document.getElementById("playerCat")
+const snakeGif = document.getElementById("snakeGif")
 const controls = document.querySelectorAll(".controls i")
 
 let highScore = parseInt(localStorage.getItem("high-score")) || 0;
@@ -101,34 +101,33 @@ function changeDirection(e) {
                 break;
     }
 
-    // updatePlayerCatAppearance(direction);
+    updateSnakeGif(direction);
 }
 
-// function updatePlayerCatAppearance(direction) {
-//     const upGif = "./assets/Images/cat-walk-up.gif"
-//     const downGif = "./assets/Images/cat-walk-down.gif"
-//     const leftGif = "./assets/Images/cat-walk-left.gif"
-//     const rightGif = "./assets/Images/cat-walk-right.gif"
-//     const stationary = "./assets/Images/cat-sleeping.png"
+function updateSnakeGif(direction) {
+     const upGif = "./assets/Images/snake-up.gif"
+     const downGif = "./assets/Images/snake-down.gif"
+     const leftGif = "./assets/Images/snake-left.gif"
+     const rightGif = "./assets/Images/snake-right.gif"
 
-//     switch (direction) {
-//         case "up":
-//             playerCat.style.backgroundImage = `url('${upGif}')`;
-//             break;
-//         case "down":
-//             playerCat.style.backgroundImage = `url('${downGif}')`;
-//             break;
-//         case "left":
-//             playerCat.style.backgroundImage = `url('${leftGif}')`;
-//             break;
-//         case "right":
-//             playerCat.style.backgroundImage = `url('${rightGif}')`;
-//             break;
-//         // default:
-//         //     playerCat.style.backgroundImage = `url('${stationary}')`;
-//     }
-//     console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
-// }
+     switch (direction) {
+         case "up":
+             snakeGif.style.backgroundImage = `url('${upGif}')`;
+             break;
+         case "down":
+             snakeGif.style.backgroundImage = `url('${downGif}')`;
+             break;
+         case "left":
+             snakeGif.style.backgroundImage = `url('${leftGif}')`;
+             break;
+         case "right":
+             snakeGif.style.backgroundImage = `url('${rightGif}')`;
+             break;
+         // default:
+         //     snakeGif.style.backgroundImage = `url('${stationary}')`;
+     }
+     console.log("Current position is:", direction) // Troubleshooting. Console.log is showing the correct direction change on key press, though it defaults to undefined after the key press.
+ }
 
 
 //Add functionality for clickable controls. Calls changeDirection on each key click and passes key dataset value as an object.
