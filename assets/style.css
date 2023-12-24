@@ -152,7 +152,7 @@ body {
     height: 30%;
 }
 
-/* #snakeGif {
+#snakeGif {
     position: absolute;
     bottom: 12%;
     left: 48%;
@@ -161,4 +161,4 @@ body {
     width: 100px;
     height: 100px;
     justify-content: center;
-} */
+}
