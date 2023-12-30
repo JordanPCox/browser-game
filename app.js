@@ -66,6 +66,7 @@ function changeDirection(e) {
     switch (e.key) {
         case "w":
         case "W":
+        case "ArrowUp":
             if (speedY !== 1){
                 speedX = 0;
                 speedY = -1;
@@ -75,6 +76,7 @@ function changeDirection(e) {
 
         case "s":
         case "S":
+            case "ArrowDown":
             if (speedY !== -1){
                 speedX = 0;
                 speedY = 1;
@@ -84,6 +86,7 @@ function changeDirection(e) {
 
         case "d":
         case "D":
+        case "ArrowRight":
             if (speedX !== -1) {
                 speedX = 1;
                 speedY = 0;
@@ -93,6 +96,7 @@ function changeDirection(e) {
 
         case "a":
         case "A":
+        case "ArrowLeft":
             if (speedX !== 1){
                 speedX = -1;
                 speedY = 0;
