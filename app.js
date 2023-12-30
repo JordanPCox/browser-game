@@ -1,6 +1,6 @@
 // Sources for basic layout and functionality: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/ & https://codepen.io/andhouse/pen/wzjKjw
 const stage = document.querySelector(".game-board")
-const scoreTracker = document.querySelector(".game-header")
+const scoreTracker = document.querySelector(".current-score")
 const highScoreTracker = document.querySelector(".high-score")
 const snakeGif = document.getElementById("snakeGif")
 const controls = document.querySelectorAll(".controls i")
@@ -171,10 +171,6 @@ function gameStart() {
             gameOver = true;
         }
     }
-
-    // Updates the player's appearance after updating the position
-    // updateSnakeGif();
-
 
     // Check to see if player1 made contact with target, then randomize next target location if true.
     if (player1X === targetX && player1Y === targetY) {
