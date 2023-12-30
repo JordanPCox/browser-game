@@ -21,7 +21,14 @@ let player1Body = []
 let speedX = 0
 let speedY = 0
 //Record score
-let score =0;
+let score = 0
+
+// Establishing snake starting speed, and the icrement for each time a target is eaten.
+let snakeSpeed = 165
+let speedIncrement = 8
+
+//Adding event listeners for keyboard movement.
+document.addEventListener("keydown", changeDirection)
 
 // Using math.random to change target location, and +1 to make sure that the random number does not land on 0 or 34. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function targetRandomizer() {
@@ -156,10 +163,10 @@ function gameStart() {
     player1Body[0] = [player1X, player1Y];
 
 
-
     // Updates the player's "head" position based on the current speed.
     player1X += speedX;
     player1Y += speedY;
+
 
     // Add a div for each part of the player's body when a target is reached.
     for (let i = 0; i < player1Body.length; i++) {
@@ -172,25 +179,26 @@ function gameStart() {
         }
     }
 
-    // Check to see if player1 made contact with target, then randomize next target location if true.
-    if (player1X === targetX && player1Y === targetY) {
+    if (player1X === targetX && player1Y === targetY) {  // Check to see if player1 made contact with target, then randomize next target location if true.
         targetRandomizer();
         player1Body.push([targetX, targetY]) // Pushes target to player1Body array after the target is eaten.
-        score++; // Increments score by 1
+        score++;
 
         highScore = score >= highScore ? score : highScore // Storing score/high score
         localStorage.setItem("high-score", highScore)
         scoreTracker.innerText = `Score: ${score}`
         highScoreTracker.innerText = `High Score: ${highScore}`
+        snakeSpeed -= speedIncrement // Applying the speed increment before the next interval starts.
+        clearInterval(gameInterval);
+        gameInterval = setInterval(gameStart, snakeSpeed);
     }
 
-    // Add game over state if player hits wall
-    if (player1X <= 0 || player1X > 30 || player1Y <= 0 || player1Y > 30) {
+
+    if (player1X <= 0 || player1X > 30 || player1Y <= 0 || player1Y > 30) { // Add game over state if player hits wall
         gameOver = true;
     }
 
-    // Display the updated HTML template
-    stage.innerHTML = htmlTemplate
+    stage.innerHTML = htmlTemplate // Display the updated HTML template
 }
 
 
@@ -200,7 +208,5 @@ targetRandomizer();
 
 
 // Using setInterval so player moves automatically
-gameInterval = setInterval(gameStart, 165);
+gameInterval = setInterval(gameStart, snakeSpeed);
 
-//Adding event listeners for keyboard movement.
-document.addEventListener("keydown", changeDirection)
