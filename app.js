@@ -30,7 +30,7 @@ let speedIncrement = 7
 //Adding event listeners for keyboard movement.
 document.addEventListener("keydown", changeDirection)
 
-// Using math.random to change target location, and +1 to make sure that the random number does not land on 0 or 34. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// Using Math.random to generate a random number between 0 (inclusive) and 30 (exclusive). Math.floor will round down to the nearest whole number. THe +1 ensures that the result is somewhere within 1-30 instead of 0-29. This function is randomizing the location of the nxt food target. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function targetRandomizer() {
     targetX = Math.floor(Math.random() * 30) + 1
     targetY = Math.floor(Math.random() * 30) + 1
@@ -66,7 +66,7 @@ window.onclick = function(event) {
     }
 }
 
-// Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
+// Keyboard controls. We use the switch conditional statement instead of "if else" so that both lower and upper case keys are recognized, as well as arrow keys. Switch statements perform different actions based on different conditions. W3 documentation: https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20is%20a,%2C%20nested%20if%2Felse%20statements.
 function changeDirection(e) {
     let direction
 
@@ -83,7 +83,7 @@ function changeDirection(e) {
 
         case "s":
         case "S":
-            case "ArrowDown":
+        case "ArrowDown":
             if (speedY !== -1){
                 speedX = 0;
                 speedY = 1;
@@ -138,7 +138,7 @@ function updateSnakeGif(direction) {
  }
 
 
-//Add functionality for clickable controls. Calls changeDirection on each key click and passes key dataset value as an object.
+//Add functionality for clickable controls. Calls changeDirection on each key click and passes key dataset value as an object. Source: https://www.freecodecamp.org/news/how-to-build-a-snake-game-in-javascript/
 controls.forEach(key => {
     key.addEventListener("click", () => changeDirection({ key: key.dataset.key }))
 })
