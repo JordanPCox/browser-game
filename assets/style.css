@@ -65,8 +65,6 @@ body {
     display: grid;
     grid-template: repeat(30, 1fr) / repeat(30, 1fr);
     /* Source for grid and "fr" unit: https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit */
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
 }
 .game-board .target {
     background-color: #DF2935;
@@ -162,4 +160,120 @@ body {
     width: 100px;
     height: 100px;
     justify-content: center;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 769px){
+    #snakeGif {
+        display: none;
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
+
+    .border-1 {
+        height: 90vh;
+        width: 80vw;
+        border-radius: 0px;
+        margin: 0;
+    }
+    #gnocchia {
+        font-size: 1.5em;
+    }
+    .game-header {
+        font-size: 1.4em;
+        padding: .4em;
+        height: .4em;
+    }
+    .border-2 {
+    height: 80%;
+    width: 85%;
+    max-height: 45vh;
+    }
+    .screen {
+        width: 100%;
+        height: 100%;
+    }
+    .current-score {
+        font-size: .5em;
+    }
+    .high-score {
+        font-size: .5em;
+    }
+    .controls {
+        flex-grow: 1;
+        font-size: 2em;
+    }
+   .bottom-row {
+    padding-bottom: 12px;
+   }
+    .mid-row {
+        justify-content: space-around;
+    }
+    .modal {
+        max-width: 100%;
+    }
+    .modal-content {
+        width: 80%;
+        max-width: 80%;
+    }
+    .giphy-embed {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #snakeGif {
+        display: none;
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+    }
+
+    .border-1 {
+        height: 98vh;
+        width: 100vw;
+        border-radius: 0px;
+        margin: 0;
+    }
+    #gnocchia {
+        font-size: .5em;
+    }
+    .game-header {
+        font-size: 0.8em;
+        padding: 8px;
+        height: .4em;
+    }
+    .border-2 {
+    height: 80%;
+    width: 85%;
+    max-height: 40vh;
+    }
+    .screen {
+        width: 100%;
+        height: 100%;
+    }
+    .current-score {
+        font-size: .5em;
+    }
+    .high-score {
+        font-size: .5em;
+    }
+    .controls {
+        flex-grow: 1;
+    }
+    .mid-row {
+        justify-content: space-between;
+    }
+    .modal {
+        max-width: 100%;
+    }
+    .modal-content {
+        width: 80%;
+        max-width: 80%;
+    }
+    .giphy-embed {
+        width: 100%;
+    }
 }

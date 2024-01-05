@@ -25,7 +25,7 @@ let score = 0
 
 // Establishing snake starting speed, and the icrement for each time a target is eaten.
 let snakeSpeed = 165
-let speedIncrement = 7
+let speedIncrement = 6
 
 //Adding event listeners for keyboard movement.
 document.addEventListener("keydown", changeDirection)
@@ -209,4 +209,3 @@ targetRandomizer();
 
 // Using setInterval so player moves automatically
 gameInterval = setInterval(gameStart, snakeSpeed);
-

@@ -11,16 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="./app.js" defer></script>
 </head>
-<body>
-    <!-- <div>
-        <button id="classicButton">Classssic</button>
-        <button id="Multiplayer">Multiplayer</button>
-    </div> -->
+<body class="large-screen small-screen">
     <div id="gameOverModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <iframe src="https://giphy.com/embed/l9jiNVVkdsG4M" width="480" height="253" frameborder="0" class="giphy-embed" allowfullscreen></iframe>
-            <p><a href="https://giphy.com/gifs/l9jiNVVkdsG4M"></a></p>
+            <p><a href="https://giphy.com/gifs/l9jiNVVkdsG4M" alt="A gif of the 'Game over, man!' scene from the movie Alien"></a></p>
             <button onclick="playAgain()">Play Again</button>
         </div>
     </div>
@@ -32,7 +28,8 @@
                     <div class="current-score">Score: 0</div>
                     <div class="high-score">High Score: 100</div>
                 </div>
-                <div class="game-board"></div>
+                <div class="game-board">
+                </div>
             </div>
         </div>
         <div class="controls">
