@@ -1,6 +1,6 @@
 # browser-game
 # Milestone Project 1
-# RULES: The "head" of the snake continually moves forward, unable to stop, growing ever longer. It must be steered left, right, up, and down to avoid hitting walls and the body of either snake. Each time the snake eats food, it will get slightly faster. The player who survives the longest wins.
+# RULES: The "head" of the snake continually moves forward, unable to stop, growing ever longer. It must be steered left, right, up, and down to avoid hitting walls and the body of the snake. Each time the snake eats food, it will get slightly faster.
 # SOURCES
 # - CSS Grid and "fr" unit: DigitalOcean. (n.d.). CSS Grid Layout: The fr Unit. DigitalOcean. https://www.digitalocean.com/community/tutorials/css-css-grid-layout-fr-unit
 # - Snake game build inspiration: Andhouse. (n.d.). CSS Grid Layout Example. CodePen. https://codepen.io/andhouse/pen/wzjKjw

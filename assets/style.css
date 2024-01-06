@@ -6,23 +6,76 @@ body {
     min-height: 100vh;
     background-color: #677DB7;
     overflow: hidden;
+    flex: 1;
 }
 
-
+.control-instructions {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    flex: 1;
+    font-family: Silkscreen;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(27, 27, 27, 0.85);
+}
+.control-instructions h2 {
+    font-size: 2.5em;
+    background-color: #dde2f0af;
+    border-radius: 12px;
+}
+.control-instructions p {
+    background-color: #dde2f0af;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1.5em;
+}
+.how-to-play {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    flex: 1;
+    font-family: Silkscreen;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(27, 27, 27, 0.85);
+}
+.how-to-play h2 {
+    font-size: 2.5em;
+    background-color: #dde2f0af;
+    border-radius: 12px;
+}
+.how-to-play p {
+    background-color: #dde2f0af;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1.5em;
+}
+#snake-text {
+    background-color: #77BA99;
+    color: #657ED4;
+}
+#food-text {
+    background-color: #77BA99;
+    color: #DF2935;
+}
 .border-1 {
+    flex: 1;
     display: flex;
     flex-direction: column;
     background-image: linear-gradient(to right, #473e53, #2E2836);
     border: 6px solid silver;
     border-radius: 18px;
     height: 95vh;
-    margin-bottom: 0px;
     font-family: Silkscreen;
     color: #dde2f0;
     font-size: 2em;
     align-items: center;
     margin: auto;
     box-shadow: 8px 10px 30px rgb(39, 38, 38);
+    margin-bottom: 36px;
 }
 
 
@@ -177,6 +230,12 @@ body {
     #snakeGif {
         display: none;
     }
+    .control-instructions {
+        display: none;
+    }
+    .how-to-play {
+        display: none;
+    }
     body, html {
         margin: 0;
         padding: 0;
@@ -277,6 +336,12 @@ body {
 
 @media (max-width: 768px) {
     #snakeGif {
+        display: none;
+    }
+    .control-instructions {
+        display: none;
+    }
+    .how-to-play {
         display: none;
     }
     body, html {
