@@ -114,6 +114,8 @@ body {
     flex-direction: column;
 }
 .controls i {
+    transform: scale(75%);
+    transform-origin: top;
     padding: 12px;
     margin: 12px;
     width: 2em;
