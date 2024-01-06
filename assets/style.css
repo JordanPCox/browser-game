@@ -180,12 +180,12 @@ body {
     body, html {
         margin: 0;
         padding: 0;
+        background-color: black;
     }
 
     .border-1 {
         height: 90vh;
         width: 80vw;
-        border-radius: 0px;
         margin: 0;
     }
     #gnocchia {
@@ -283,12 +283,12 @@ body {
         margin: 0;
         padding: 0;
         overflow: hidden;
+        background-color: black;
     }
 
     .border-1 {
         height: 98vh;
         width: 100vw;
-        border-radius: 0px;
         margin: 0;
     }
     #gnocchia {
