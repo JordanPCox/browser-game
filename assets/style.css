@@ -114,8 +114,10 @@ body {
     flex-direction: column;
 }
 .controls i {
+    /* Credit for scaling idea to prevent buttons from being cut off: Jeremy "screamkitty" on Discord. */
     transform: scale(75%);
     transform-origin: top;
+    box-shadow: 0 9px #999;
     padding: 12px;
     margin: 12px;
     width: 2em;
@@ -125,6 +127,13 @@ body {
     text-align: center;
     font-size: 1.5em;
     cursor: pointer;
+}
+.controls i:hover {
+    background-color: #657ED4;
+}
+.controls i:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px) scale(75%);
 }
 
 .top-row {
@@ -188,9 +197,9 @@ body {
         height: .4em;
     }
     .border-2 {
-    height: 80%;
-    width: 85%;
-    max-height: 45vh;
+        height: 80%;
+        width: 85%;
+        max-height: 45vh;
     }
     .screen {
         width: 100%;

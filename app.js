@@ -9,13 +9,13 @@ let highScore = parseInt(localStorage.getItem("high-score")) || 0;
 highScoreTracker.innerText = `High Score: ${highScore}`
 
 let gameOver = false;
-// Creating our targets
-let targetX
-let targetY
+// Creating our food
+let foodX
+let foodY
 // Creating our player1 starting points
 let player1X = 8
 let player1Y = 8
-// Add onto player1 body after touching target
+// Add onto player1 body after eating food
 let player1Body = []
 // Initializing movement
 let speedX = 0
@@ -23,17 +23,17 @@ let speedY = 0
 //Record score
 let score = 0
 
-// Establishing snake starting speed, and the icrement for each time a target is eaten.
+// Establishing snake starting speed, and the increment for each time food is eaten.
 let snakeSpeed = 165
 let speedIncrement = 6
 
 //Adding event listeners for keyboard movement.
 document.addEventListener("keydown", changeDirection)
 
-// Using Math.random to generate a random number between 0 (inclusive) and 30 (exclusive). Math.floor will round down to the nearest whole number. THe +1 ensures that the result is somewhere within 1-30 instead of 0-29. This function is randomizing the location of the nxt food target. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// Using Math.random to generate a random number between 0 (inclusive) and 30 (exclusive). Math.floor will round down to the nearest whole number. THe +1 ensures that the result is somewhere within 1-30 instead of 0-29. This function is randomizing the location of the next food. Sources: chatGPT and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function targetRandomizer() {
-    targetX = Math.floor(Math.random() * 30) + 1
-    targetY = Math.floor(Math.random() * 30) + 1
+    foodX = Math.floor(Math.random() * 30) + 1
+    foodY = Math.floor(Math.random() * 30) + 1
 }
 
 function handleGameOver() {
@@ -112,7 +112,7 @@ function changeDirection(e) {
                 break;
     }
 
-    updateSnakeGif(direction);
+    updateSnakeGif(direction)
 }
 
 function updateSnakeGif(direction) {
@@ -148,8 +148,8 @@ function gameStart() {
     if (gameOver) return handleGameOver();
 
 
-    // Add target
-    let htmlTemplate = `<div class="target" style="grid-area: ${targetY} / ${targetX}"></div>`;
+    // Add food
+    let htmlTemplate = `<div class="target" style="grid-area: ${foodY} / ${foodX}"></div>`;
 
     // This loop iterates through the body segments, excluding the head, starting from the last segment of the body through all segments up to the second one.
     // It then updates each segment to have the position of the segment before it.
@@ -168,7 +168,7 @@ function gameStart() {
     player1Y += speedY;
 
 
-    // Add a div for each part of the player's body when a target is reached.
+    // Add a div for each part of the player's body when food is eaten.
     for (let i = 0; i < player1Body.length; i++) {
         htmlTemplate += `<div class="player1" style="grid-area: ${player1Body[i][1]} / ${player1Body[i][0]}"></div>`;
 
@@ -179,9 +179,9 @@ function gameStart() {
         }
     }
 
-    if (player1X === targetX && player1Y === targetY) {  // Check to see if player1 made contact with target, then randomize next target location if true.
+    if (player1X === foodX && player1Y === foodY) {  // Check to see if player1 made contact with food, then randomize next food location if true.
         targetRandomizer();
-        player1Body.push([targetX, targetY]) // Pushes target to player1Body array after the target is eaten.
+        player1Body.push([foodX, foodY]) // Pushes food to player1Body array after the food is eaten.
         score++;
 
         highScore = score >= highScore ? score : highScore // Storing score/high score

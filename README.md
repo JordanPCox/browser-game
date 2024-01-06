@@ -9,3 +9,4 @@
 # - Snake art gif credit: "Created by yolkati & Sebastian Riedel (Baŝto). Licensing: Creative Commons Attribution-ShareAlike (CC BY-SA) version 3.0"
 # - FreeCodeCamp. (2020, December 11). How to Build a Snake Game in JavaScript. FreeCodeCamp. https://www.freecodecamp.org/news/how-to-build-a-snake-game-in-javascript/
 # - chatGPT
+# - Help with fixing google fonts and scaling clickable buttons so that they're not cut off: Jeremy, Discord username "screamkitty"
