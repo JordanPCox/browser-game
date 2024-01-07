@@ -8,7 +8,7 @@ const controls = document.querySelectorAll(".controls i")
 let highScore = parseInt(localStorage.getItem("high-score")) || 0;
 highScoreTracker.innerText = `High Score: ${highScore}`
 
-let gameOver = false;
+let gameOver = false
 // Creating our food
 let foodX
 let foodY
@@ -43,7 +43,7 @@ function handleGameOver() {
 
 
 function playAgain() {
-    window.location.reload();
+    window.location.reload()
 }
 
 // Adding a modal for a game over screen
@@ -145,7 +145,7 @@ controls.forEach(key => {
 
 
 function gameStart() {
-    if (gameOver) return handleGameOver();
+    if (gameOver) return handleGameOver()
 
 
     // Add food
@@ -160,12 +160,12 @@ function gameStart() {
 
 
     // Setting the first element of player1's body to the current player1 position
-    player1Body[0] = [player1X, player1Y];
+    player1Body[0] = [player1X, player1Y]
 
 
     // Updates the player's "head" position based on the current speed.
-    player1X += speedX;
-    player1Y += speedY;
+    player1X += speedX
+    player1Y += speedY
 
 
     // Add a div for each part of the player's body when food is eaten.
@@ -175,37 +175,37 @@ function gameStart() {
 
         // Add game over state if player hits own body.  Solution found from CodingNepal: https://www.codingnepalweb.com/create-snake-game-htm-css-javascript/
         if (i !== 0 && player1Body[0][1] === player1Body[i][1] && player1Body[0][0] === player1Body[i][0]) {
-            gameOver = true;
+            gameOver = true
         }
     }
 
     if (player1X === foodX && player1Y === foodY) {  // Check to see if player1 made contact with food, then randomize next food location if true.
-        targetRandomizer();
+        targetRandomizer()
         player1Body.push([foodX, foodY]) // Pushes food to player1Body array after the food is eaten.
-        score++;
+        score++
 
         highScore = score >= highScore ? score : highScore // Storing score/high score
         localStorage.setItem("high-score", highScore)
         scoreTracker.innerText = `Score: ${score}`
         highScoreTracker.innerText = `High Score: ${highScore}`
         snakeSpeed -= speedIncrement // Applying the speed increment before the next interval starts.
-        clearInterval(gameInterval);
-        gameInterval = setInterval(gameStart, snakeSpeed);
+        clearInterval(gameInterval)
+        gameInterval = setInterval(gameStart, snakeSpeed)
     }
 
 
     if (player1X <= 0 || player1X > 30 || player1Y <= 0 || player1Y > 30) { // Add game over state if player hits wall
-        gameOver = true;
+        gameOver = true
     }
 
     stage.innerHTML = htmlTemplate // Display the updated HTML template
 }
 
 
-gameStart();
+gameStart()
 
-targetRandomizer();
+targetRandomizer()
 
 
 // Using setInterval so player moves automatically
-gameInterval = setInterval(gameStart, snakeSpeed);
+gameInterval = setInterval(gameStart, snakeSpeed)
